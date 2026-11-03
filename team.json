@@ -1,0 +1,27 @@
+{
+  "team_number": "T0071",
+  "group_lead": {
+    "name": "Ojus Sood",
+    "enrollment_no": "2501010313",
+    "github": "ojus-sd"
+  },
+  "members": [
+    {
+      "name": "Shubham Mittal",
+      "enrollment_no": "2501010446",
+      "github": "shubhammittal2241"
+    },
+    {
+      "name": "Ajay Yadav",
+      "enrollment_no": "2501010042",
+      "github": "AjayYadav08"
+    },
+    {
+      "name": "Kartikey Dhawan",
+      "enrollment_no": "2501010213",
+      "github": "kartikey-dhawan"
+    }
+  ],
+  "postgres_version": "",
+  "laptop_used_for_benchmarks": "MacBook Pro M4"
+}
