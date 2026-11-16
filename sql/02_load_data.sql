@@ -1,12 +1,12 @@
 -- =====================================================================
--- MakeMyTrip DBMS Project: Seed Data Loading Script (Phase 2)
--- We load the 12 CSV tables in topological order based on Foreign Key
+-- MakeMyTrip DBMS Project: Seed Data Loading Script (Phase 2).
+-- We load the 12 CSV tables in topological order based on Foreign Key.
 -- dependencies so PostgreSQL doesn't hit referential integrity errors.
 -- =====================================================================
 
 SET search_path TO mmt;
 
--- 1. Base / Lookup tables (no foreign key dependencies)
+-- 1. Base / Lookup tables (no foreign key dependencies).
 -- These must be loaded first so other tables can reference them.
 \copy airlines FROM 'seed_data/airlines.csv' WITH (FORMAT csv, HEADER true);
 \copy airports FROM 'seed_data/airports.csv' WITH (FORMAT csv, HEADER true);
@@ -20,7 +20,7 @@ SET search_path TO mmt;
 \copy room_types FROM 'seed_data/room_types.csv' WITH (FORMAT csv, HEADER true);
 \copy bookings FROM 'seed_data/bookings.csv' WITH (FORMAT csv, HEADER true);
 
--- 3. Booking subtype tables (1-to-1 extension of bookings)
+-- 3. Booking subtype tables (1 - to - 1 extension of bookings)
 -- flight_bookings and hotel_bookings reference bookings.booking_id.
 \copy flight_bookings FROM 'seed_data/flight_bookings.csv' WITH (FORMAT csv, HEADER true);
 \copy hotel_bookings FROM 'seed_data/hotel_bookings.csv' WITH (FORMAT csv, HEADER true);
