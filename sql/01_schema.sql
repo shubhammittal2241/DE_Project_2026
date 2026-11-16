@@ -1,26 +1,16 @@
--- =====================================================================
--- MakeMyTrip DBMS Project: Database Schema Definition (Phase 2)
--- Database: PostgreSQL 15+
--- Schema: mmt
--- Constraints only: PK, FK, UNIQUE, NOT NULL, CHECK
--- No secondary indexes are created in this file.
--- =====================================================================
-
 DROP SCHEMA IF EXISTS mmt CASCADE;
 CREATE SCHEMA mmt;
 SET search_path TO mmt;
 
--- ---------------------------------------------------------------------
 -- 1. Table: airlines
--- ---------------------------------------------------------------------
+
 CREATE TABLE airlines (
     airline_code VARCHAR(2) PRIMARY KEY,
     airline_name VARCHAR(100) NOT NULL UNIQUE
 );
 
--- ---------------------------------------------------------------------
 -- 2. Table: airports
--- ---------------------------------------------------------------------
+
 CREATE TABLE airports (
     iata_code CHAR(3) PRIMARY KEY,
     airport_name VARCHAR(150) NOT NULL,
@@ -28,9 +18,8 @@ CREATE TABLE airports (
     country_code CHAR(2) NOT NULL
 );
 
--- ---------------------------------------------------------------------
 -- 3. Table: flights
--- ---------------------------------------------------------------------
+
 CREATE TABLE flights (
     flight_id INT PRIMARY KEY,
     airline_code VARCHAR(2) NOT NULL REFERENCES airlines(airline_code) ON DELETE RESTRICT,
@@ -50,9 +39,8 @@ CREATE TABLE flights (
     CONSTRAINT chk_flights_status CHECK (status IN ('SCHEDULED', 'DELAYED', 'DEPARTED', 'LANDED', 'CANCELLED'))
 );
 
--- ---------------------------------------------------------------------
 -- 4. Table: hotels
--- ---------------------------------------------------------------------
+
 CREATE TABLE hotels (
     hotel_id INT PRIMARY KEY,
     hotel_name VARCHAR(150) NOT NULL,
@@ -66,9 +54,8 @@ CREATE TABLE hotels (
     CONSTRAINT chk_hotels_user_rating CHECK (user_rating IS NULL OR (user_rating >= 1.0 AND user_rating <= 5.0))
 );
 
--- ---------------------------------------------------------------------
 -- 5. Table: room_types
--- ---------------------------------------------------------------------
+
 CREATE TABLE room_types (
     room_type_id INT PRIMARY KEY,
     hotel_id INT NOT NULL REFERENCES hotels(hotel_id) ON DELETE CASCADE,
@@ -81,9 +68,8 @@ CREATE TABLE room_types (
     CONSTRAINT chk_room_types_total_rooms CHECK (total_rooms > 0)
 );
 
--- ---------------------------------------------------------------------
 -- 6. Table: customers
--- ---------------------------------------------------------------------
+
 CREATE TABLE customers (
     customer_id INT PRIMARY KEY,
     full_name VARCHAR(150) NOT NULL,
@@ -94,9 +80,8 @@ CREATE TABLE customers (
     CONSTRAINT chk_customers_loyalty CHECK (loyalty_tier IN ('BLUE', 'SILVER', 'GOLD', 'PLATINUM'))
 );
 
--- ---------------------------------------------------------------------
 -- 7. Table: coupons
--- ---------------------------------------------------------------------
+
 CREATE TABLE coupons (
     coupon_code VARCHAR(30) PRIMARY KEY,
     applies_to VARCHAR(20) NOT NULL,
@@ -110,9 +95,8 @@ CREATE TABLE coupons (
     CONSTRAINT chk_coupons_validity CHECK (valid_to >= valid_from)
 );
 
--- ---------------------------------------------------------------------
 -- 8. Table: bookings
--- ---------------------------------------------------------------------
+
 CREATE TABLE bookings (
     booking_id INT PRIMARY KEY,
     booking_ref VARCHAR(20) NOT NULL UNIQUE,
@@ -141,9 +125,8 @@ CREATE TABLE bookings (
     )
 );
 
--- ---------------------------------------------------------------------
 -- 9. Table: flight_bookings
--- ---------------------------------------------------------------------
+
 CREATE TABLE flight_bookings (
     booking_id INT PRIMARY KEY REFERENCES bookings(booking_id) ON DELETE CASCADE,
     flight_id INT NOT NULL REFERENCES flights(flight_id) ON DELETE RESTRICT,
@@ -155,9 +138,8 @@ CREATE TABLE flight_bookings (
     CONSTRAINT chk_flight_bookings_fare CHECK (fare_paid >= 0)
 );
 
--- ---------------------------------------------------------------------
 -- 10. Table: passengers
--- ---------------------------------------------------------------------
+
 CREATE TABLE passengers (
     booking_id INT NOT NULL REFERENCES flight_bookings(booking_id) ON DELETE CASCADE,
     seq_no INT NOT NULL,
@@ -171,9 +153,8 @@ CREATE TABLE passengers (
     CONSTRAINT chk_passengers_gender CHECK (gender IN ('M', 'F', 'X'))
 );
 
--- ---------------------------------------------------------------------
 -- 11. Table: hotel_bookings
--- ---------------------------------------------------------------------
+
 CREATE TABLE hotel_bookings (
     booking_id INT PRIMARY KEY REFERENCES bookings(booking_id) ON DELETE CASCADE,
     hotel_id INT NOT NULL REFERENCES hotels(hotel_id) ON DELETE RESTRICT,
@@ -188,9 +169,8 @@ CREATE TABLE hotel_bookings (
     CONSTRAINT chk_hotel_bookings_guests CHECK (guests > 0)
 );
 
--- ---------------------------------------------------------------------
 -- 12. Table: hotel_reviews
--- ---------------------------------------------------------------------
+
 CREATE TABLE hotel_reviews (
     review_id INT PRIMARY KEY,
     booking_id INT NOT NULL UNIQUE REFERENCES hotel_bookings(booking_id) ON DELETE CASCADE,
