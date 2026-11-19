@@ -74,3 +74,23 @@ CREATE INDEX IF NOT EXISTS idx_bookings_booked_at_desc
 CREATE INDEX IF NOT EXISTS idx_bookings_id_ref_status
     ON bookings (booking_id)
     INCLUDE (booking_ref, status);
+
+CREATE INDEX IF NOT EXISTS idx_hotel_reviews_text_trgm
+    ON hotel_reviews USING gin (review_text gin_trgm_ops);
+
+CREATE INDEX IF NOT EXISTS idx_hotel_reviews_hotel_rating
+    ON hotel_reviews (hotel_id, rating);
+
+CREATE INDEX IF NOT EXISTS idx_passengers_seniors
+    ON passengers (booking_id)
+    WHERE age >= 60;
+
+CREATE INDEX IF NOT EXISTS idx_customers_lower_email
+    ON customers (lower(email))
+    INCLUDE (customer_id, full_name, loyalty_tier);
+
+CREATE INDEX IF NOT EXISTS idx_passengers_manifest
+    ON passengers (booking_id)
+    INCLUDE (full_name, age, gender, seat_no);
+
+ANALYZE;
