@@ -45,3 +45,32 @@ CREATE INDEX IF NOT EXISTS idx_hotel_bookings_w05
 CREATE INDEX IF NOT EXISTS idx_hotels_city
     ON hotels (city_name, hotel_id)
     INCLUDE (hotel_name);
+
+CREATE INDEX IF NOT EXISTS idx_bookings_customer_status
+    ON bookings (customer_id, status)
+    INCLUDE (booking_ref, booking_type, total_amount);
+
+CREATE INDEX IF NOT EXISTS idx_bookings_pending_payment
+    ON bookings (booking_id, booked_at)
+    WHERE status = 'PENDING_PAYMENT';
+
+CREATE INDEX IF NOT EXISTS idx_bookings_revenue_2026
+    ON bookings (booked_at, booking_type)
+    INCLUDE (total_amount)
+    WHERE status <> 'CANCELLED';
+
+CREATE INDEX IF NOT EXISTS idx_bookings_coupon_code
+    ON bookings (coupon_code)
+    WHERE coupon_code IS NOT NULL;
+
+CREATE INDEX IF NOT EXISTS idx_bookings_completed_2026
+    ON bookings (customer_id, total_amount)
+    WHERE status = 'COMPLETED' AND booked_at >= '2026-01-01';
+
+CREATE INDEX IF NOT EXISTS idx_bookings_booked_at_desc
+    ON bookings (booked_at DESC, booking_id DESC)
+    INCLUDE (booking_ref, booking_type, status, total_amount);
+
+CREATE INDEX IF NOT EXISTS idx_bookings_id_ref_status
+    ON bookings (booking_id)
+    INCLUDE (booking_ref, status);
