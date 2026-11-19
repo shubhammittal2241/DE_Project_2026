@@ -45,7 +45,7 @@ By analyzing query execution plans with `EXPLAIN (ANALYZE, BUFFERS)`, adding 23 
 
 ## 3. Deep Dive: The Wrong-Result Query (R13 & Problem P6)
 
-### 3.1 The Problem
+### 3.1 The Problem.
 Marketing reported Problem P6: *"Marketing's 'coupons never used' report always returns nothing."*
 Original query from `queries/workload_30.sql`:
 ```sql
