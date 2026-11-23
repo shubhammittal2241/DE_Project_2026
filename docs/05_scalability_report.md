@@ -1,6 +1,6 @@
-# Phase 5: Scalability & Architecture Report (20x to 100x Scale)
+# Phase 5: Scalability & Architecture Report  (20x to 100x Scale)
 
-## 1. Executive Summary
+## 1. Executive  Summary
 This report analyzes database scalability under **20x data volume** (~2.9 million bookings, 3.3 million passengers, 1.7 million flight bookings, 1.2 million hotel bookings, 800,000 customers) and outlines the architecture needed for **100x scale** (~15 million bookings).
 
 **Test Environment & Benchmarking Details:**
@@ -10,7 +10,7 @@ This report analyzes database scalability under **20x data volume** (~2.9 millio
 
 ---
 
-## 2. Large Dataset (20x) Scalability Comparison Table
+## 2. Large Dataset (20x) Scalability  Comparison Table
 
 Performance targets evaluated against project criteria:
 - **Real-Time / Customer-Facing (`R01`–`R07`, `R10`, `R11`, `R23`, `W01`–`W03`):** Target **< 5 ms**
@@ -89,7 +89,7 @@ LIMIT 25;
 
 **Measured Execution Plan (PostgreSQL 16, 20x Data):**
 ```
-Limit  (cost=0.43..1.69 rows=25 width=43) (actual time=0.089..0.108 rows=25 loops=1)
+Limit  (cost = 0.43..1.69 rows = 25 width = 43) (actual time=0.089..0.108 rows=25 loops=1)
   Buffers: shared hit=7 read=1
   ->  Index Only Scan using idx_bookings_booked_at_desc on bookings  (cost=0.43..141071.09 rows=2795810 width=43) (actual time=0.088..0.103 rows=25 loops=1)
         Index Cond: (ROW(booked_at, booking_id) <= ROW('2026-06-12 03:18:01+05:30'::timestamp with time zone, 3944819))
