@@ -24,7 +24,7 @@
 | ---------- | --------------- | -------------- | ----------------- |
 | Group Lead | Ojus Sood       | 2501010313     | ojus-sd           |
 | Member 2   | Shubham Mittal  | 2501010446     | shubhammittal2241 |
-| Member 3   | AjayYadav08     | 2501010042     | AjayYadav08       |
+| Member 3   | Ajay Yadav      | 2501010042     | AjayYadav08       |
 | Member 4   | Kartikey Dhawan | 2501010213     | kartikey-dhawan   |
 
 **Team No.:** T0071 · **Section:** D · **Repository URL:** https://github.com/shubhammittal2241/DE_Project_2026

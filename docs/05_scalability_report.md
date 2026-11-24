@@ -6,7 +6,7 @@ This report analyzes database scalability under **20x data volume** (~2.9 millio
 **Test Environment & Benchmarking Details:**
 - **20x Dataset Testing:** Tested against PostgreSQL 16 on a dedicated database (`makemytrip_large`) loaded with relationally consistent data (2,895,840 bookings, 3,267,600 passengers, 1,697,980 flight bookings, 1,197,860 hotel bookings, 800,000 customers).
 - **Execution Plans:** All 30 queries were executed for 3 runs using `EXPLAIN (ANALYZE, BUFFERS)`. Raw execution plans are saved in `benchmarks/results/large/`, and timing summaries are stored in `benchmarks/results/large/summary.csv`.
-- **Reproducibility:** The benchmark run script (`benchmarks/run_large_benchmark.sh`) and data loading script (`sql/03_load_large_data.sql`) can be re-run whenever needed.
+- **Reproducibility:** The benchmark run script (`benchmarks/run_benchmark.sh`) and data loading script (`sql/02_load_data.sql`) can be re-run whenever needed.
 
 ---
 
@@ -262,8 +262,8 @@ To re-run the benchmark on a large dataset:
 # 1. Unzip dataset if archived
 unzip large_data.zip
 
-# 2. Run the Phase 5 benchmark script (e.g. 3 runs)
-./benchmarks/run_large_benchmark.sh makemytrip_large 3
+# 2. Run the Phase 5 benchmark script on the optimized queries (3 runs)
+./benchmarks/run_benchmark.sh makemytrip_large large 3 sql/06_optimized_queries.sql
 ```
 
-This script sets up the database, loads data using `sql/03_load_large_data.sql`, creates required indexes, executes all 30 queries 3 times, and records the output plans in `benchmarks/results/large/`.
+This benchmark executes all 30 optimized queries 3 times, records the output plans, and outputs the timing summary table in `benchmarks/results/large/summary.csv`.

@@ -1,31 +1,31 @@
 query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes
-R01,READ,1.415,0.810,0.745,2.689,Bitmap Heap Scan on flights | Bitmap Index Scan on idx_flights_route_date_fare | Index Only Scan using idx_flight_bookings_flight_id on flight_bookings | Index Only Scan using idx_bookings_id_ref_status on bookings
-R02,READ,0.229,0.109,0.107,0.472,Index Only Scan using idx_flights_route_date_fare on flights
-R03,READ,3.167,1.614,1.531,6.356,Bitmap Heap Scan on hotels | Bitmap Index Scan on idx_hotels_search
-R04,READ,0.252,0.105,0.078,0.573,Index Scan using idx_room_types_hotel on room_types | Index Only Scan using idx_hotel_bookings_rt_dates on hotel_bookings | Index Only Scan using idx_bookings_id_ref_status on bookings
-R05,READ,0.170,0.038,0.034,0.437,Index Scan using idx_bookings_customer_status on bookings | Index Scan using flight_bookings_pkey on flight_bookings | Index Scan using flights_pkey on flights | Index Scan using hotel_bookings_pkey on hotel_bookings
-R06,READ,0.132,0.024,0.023,0.349,Index Scan using bookings_booking_ref_key on bookings
-R07,READ,4.913,0.946,0.943,12.851,Index Only Scan using idx_flight_bookings_flight_id on flight_bookings | Index Only Scan using idx_bookings_id_ref_status on bookings | Index Scan using passengers_pkey on passengers
-R08,READ,13.415,8.272,8.236,23.738,Index Scan using idx_flights_w04 on flights | Index Only Scan using idx_flight_bookings_flight_id on flight_bookings
-R09,READ,61.911,58.075,57.722,69.936,Seq Scan on flight_bookings | Bitmap Heap Scan on bookings | Bitmap Index Scan on idx_bookings_booked_at_desc | Seq Scan on flights
-R10,READ,0.016,0.013,0.013,0.022,Index Scan using idx_flights_delayed on flights
-R11,READ,0.497,0.372,0.364,0.754,Index Scan using idx_bookings_pending_payment on bookings
-R12,READ,301.738,288.584,276.373,340.258,Seq Scan on bookings
-R13,READ,1593.472,1590.204,1588.418,1601.794,Seq Scan on coupons | Seq Scan on bookings
-R14,READ,455.133,451.277,449.191,464.932,Seq Scan on bookings | Seq Scan on flight_bookings | Seq Scan on flights | Seq Scan on airlines
-R15,READ,127.497,114.178,105.741,162.571,Seq Scan on bookings | Bitmap Heap Scan on hotel_bookings | Bitmap Index Scan on idx_hotel_bookings_dates | Seq Scan on hotels
-R16,READ,1107.373,1112.368,1094.640,1115.111,Seq Scan on bookings | Seq Scan on customers | Seq Scan on flight_bookings | Seq Scan on flights | Seq Scan on hotel_bookings
-R17,READ,367.823,360.974,351.134,391.361,Bitmap Heap Scan on bookings | Bitmap Index Scan on idx_bookings_completed_2026
-R18,READ,29.241,29.264,28.298,30.162,Bitmap Heap Scan on hotel_reviews | Bitmap Index Scan on idx_hotel_reviews_text_trgm | Index Only Scan using idx_hotels_city on hotels
-R19,READ,162.486,117.347,115.679,254.431,Seq Scan on flights | Index Only Scan using idx_flight_bookings_flight_id on flight_bookings | Index Only Scan using idx_passengers_manifest on passengers
-R20,READ,82.555,80.479,78.360,88.827,Seq Scan on bookings
-R21,READ,147.638,137.456,136.216,169.243,Index Only Scan using idx_passengers_seniors on passengers | Seq Scan on flight_bookings | Seq Scan on flights
-R22,READ,10.998,10.031,9.976,12.988,Index Only Scan using idx_bookings_booked_at_desc on bookings
-R23,READ,0.097,0.025,0.025,0.241,Index Scan using idx_customers_lower_email on customers
-R24,READ,12.046,10.190,9.504,16.443,Index Only Scan using idx_hotels_city on hotels | Index Only Scan using idx_hotel_reviews_hotel_rating on hotel_reviews
-R25,READ,209.547,205.210,202.852,220.579,Seq Scan on flight_bookings | Seq Scan on bookings | Seq Scan on flights
-W01,WRITE,1.255,0.609,0.605,2.550,(no scan)
-W02,WRITE,0.606,0.242,0.233,1.342,Index Only Scan using idx_bookings_pending_payment on bookings | Index Scan using idx_bookings_id_ref_status on bookings
-W03,WRITE,0.417,0.207,0.198,0.845,Index Scan using bookings_booking_ref_key on bookings
-W04,WRITE,1.143,0.282,0.224,2.924,Index Scan using idx_flights_w04 on flights
-W05,WRITE,145.236,13.148,12.972,409.587,Index Scan using idx_hotel_bookings_w05 on hotel_bookings | Index Scan using bookings_pkey on bookings
+R01,READ,1.445,1.456,1.351,1.528,Bitmap Heap Scan on flights | Bitmap Index Scan on idx_flights_search | Index Only Scan using idx_flight_bookings_flight_id on flight_bookings | Index Only Scan using idx_bookings_id_ref_status on bookings
+R02,READ,0.555,0.480,0.452,0.733,Index Only Scan using idx_flights_route_date_fare on flights
+R03,READ,1.409,0.425,0.383,3.419,Bitmap Heap Scan on hotels | Bitmap Index Scan on idx_hotels_search
+R04,READ,6.434,1.248,1.123,16.931,Index Scan using idx_room_types_hotel on room_types | Index Only Scan using idx_hotel_bookings_rt_dates on hotel_bookings | Index Only Scan using idx_bookings_id_ref_status on bookings
+R05,READ,0.780,0.431,0.392,1.517,Index Scan using idx_bookings_customer_status on bookings | Index Scan using flight_bookings_pkey on flight_bookings | Index Scan using flights_pkey on flights | Index Scan using hotel_bookings_pkey on hotel_bookings
+R06,READ,0.354,0.172,0.155,0.735,Index Scan using bookings_booking_ref_key on bookings
+R07,READ,3.192,3.159,2.999,3.418,Index Only Scan using idx_flight_bookings_flight_id on flight_bookings | Index Only Scan using idx_bookings_id_ref_status on bookings | Index Only Scan using idx_passengers_manifest on passengers
+R08,READ,24.658,20.444,19.211,34.319,Index Scan using idx_flights_w04 on flights | Index Only Scan using idx_flight_bookings_flight_id on flight_bookings
+R09,READ,188.107,124.893,115.488,323.940,Seq Scan on flight_bookings | Index Only Scan using idx_bookings_booked_at_desc on bookings | Seq Scan on flights
+R10,READ,0.103,0.023,0.018,0.268,Index Scan using idx_flights_delayed on flights
+R11,READ,3.032,1.462,1.316,6.318,Index Scan using idx_bookings_pending_payment on bookings
+R12,READ,329.346,325.955,309.488,352.595,Index Only Scan using idx_bookings_revenue_2026 on bookings
+R13,READ,1.782,0.269,0.242,4.835,Seq Scan on coupons | Index Only Scan using idx_bookings_coupon_code on bookings
+R14,READ,1129.215,950.073,893.612,1543.960,Seq Scan on bookings | Seq Scan on flight_bookings | Seq Scan on flights | Seq Scan on airlines
+R15,READ,129.956,83.241,76.743,229.884,Seq Scan on hotel_bookings | Index Only Scan using idx_bookings_id_ref_status on bookings | Seq Scan on hotels
+R16,READ,2122.779,2128.971,2004.256,2235.110,Seq Scan on bookings | Seq Scan on customers | Seq Scan on flight_bookings | Seq Scan on flights | Seq Scan on hotel_bookings
+R17,READ,322.639,324.433,302.919,340.565,Index Only Scan using idx_bookings_completed_2026 on bookings
+R18,READ,49.810,44.228,41.738,63.464,Bitmap Heap Scan on hotel_reviews | Bitmap Index Scan on idx_hotel_reviews_text_trgm | Index Only Scan using idx_hotels_city on hotels
+R19,READ,272.583,200.420,186.791,430.538,Index Scan using flights_pkey on flights | Index Only Scan using idx_flight_bookings_flight_id on flight_bookings | Index Only Scan using passengers_pkey on passengers
+R20,READ,53.499,53.622,50.578,56.297,Index Only Scan using idx_bookings_booked_at_desc on bookings
+R21,READ,233.251,230.269,218.606,250.878,Index Only Scan using idx_passengers_seniors on passengers | Seq Scan on flight_bookings | Seq Scan on flights
+R22,READ,13.692,13.662,12.977,14.437,Index Only Scan using idx_bookings_booked_at_desc on bookings
+R23,READ,0.225,0.070,0.056,0.549,Index Scan using idx_customers_lower_email on customers
+R24,READ,12.425,11.290,10.669,15.316,Index Only Scan using idx_hotels_city on hotels | Index Only Scan using idx_hotel_reviews_hotel_rating on hotel_reviews
+R25,READ,363.526,345.387,327.211,417.980,Seq Scan on flight_bookings | Index Only Scan using idx_bookings_booked_at_desc on bookings | Seq Scan on flights
+W01,WRITE,1.753,1.035,0.947,3.277,(no scan)
+W02,WRITE,1.604,0.882,0.802,3.128,Index Only Scan using idx_bookings_pending_payment on bookings | Index Scan using idx_bookings_id_ref_status on bookings
+W03,WRITE,1.304,1.187,1.122,1.603,Index Scan using bookings_booking_ref_key on bookings
+W04,WRITE,2.791,1.305,1.174,5.894,Index Scan using idx_flights_w04 on flights
+W05,WRITE,77.592,32.328,29.095,171.353,Bitmap Heap Scan on hotel_bookings | Bitmap Index Scan on idx_hotel_bookings_w05 | Index Scan using bookings_pkey on bookings
